@@ -88,12 +88,12 @@ def Calc_eta_c_1(tau_y1, gama_dot_c, k1, n1):
     eta_c_1 = tau_y1 / gama_dot_c + k1 * gama_dot_c ** (n1 - 1)    
     return eta_c_1
 
-def ErrorHandeling(error)
-    try:
+# def ErrorHandeling(error)
+#     try:
         
-    except ValueError:
-        answer = 'Could not convert data to an integer.'
-    except:
-        answer = sys.exc_info()[0]
-        raise
-    return 
+#     except ValueError:
+#         answer = 'Could not convert data to an integer.'
+#     except:
+#         answer = sys.exc_info()[0]
+#         raise
+#     return 
