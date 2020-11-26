@@ -14,14 +14,13 @@ import csv
 
 # Pasta com Logo do GReo
 GREOlogofile = os.path.join(
-            './images/greologo.png'
+            './images/logo.png'
         )
 
-fig = matplotlib.figure.Figure(figsize=(5, 4), dpi=600)
-t = np.arange(0, 3, .01)
-fig.add_subplot(111).plot(t, 2 * np.sin(2 * np.pi * t))
-
-matplotlib.use("TkAgg")
+# fig = matplotlib.figure.Figure(figsize=(3, 4))
+# t = np.arange(0, 3, .01)
+# fig.add_subplot(111).plot(t, 2 * np.sin(2 * np.pi * t))
+# matplotlib.use("TkAgg")
 
 sg.theme('LightBlue') #LightBlue -> combinação de cores do tema da janela
 
@@ -42,12 +41,12 @@ inputs_column = [
     [sg.Text('Densidade [lb/gal]'), sg.Input(size=(12,1), enable_events=True, key='Input_rho_1_ing')], 
     [sg.Text('Tensão limite de escoamento [lbf/100ft\u00B2]'), sg.Input(size=(12,1), enable_events=True, key='Input_tau_y1_ing')], 
     [sg.Text('Índice de consistência [lbf.s\u207f/100ft\u00B2]'), sg.Input(size=(12,1), enable_events=True, key='Input_k1_ing')], 
-    [sg.Text('Índice de potência [ ]'), sg.Input(size=(12,1), enable_events=True, key='Input_n1')], 
+    [sg.Text('Índice de comportamento [ ]'), sg.Input(size=(12,1), enable_events=True, key='Input_n1')], 
     [sg.Text('Fluido deslocador:', text_color='DarkGrey', font='Any 18')], 
     [sg.Text('Densidade [lb/gal]'), sg.Input(size=(12,1), enable_events=True, key='Input_rho_2_ing')], 
     [sg.Text('Tensão limite de escoamento [lbf/100ft\u00B2]'), sg.Input(size=(12,1), enable_events=True, key='Input_tau_y2_ing')], 
     [sg.Text('Índice de consistência [lbf.s\u207f/100ft\u00B2]'), sg.Input(size=(12,1), enable_events=True, key='Input_k2_ing')], 
-    [sg.Text('Índice de potência [ ]'), sg.Input(size=(12,1), enable_events=True,  key='Input_n2')], 
+    [sg.Text('Índice de comportamento [ ]'), sg.Input(size=(12,1), enable_events=True,  key='Input_n2')], 
     [sg.Text(' ')], 
     [sg.Button('Ok', key='Calculate', bind_return_key=True)], # Botão
 ]
@@ -56,6 +55,9 @@ inputs_column = [
 # Coluna da direita
 result_column = [
     [sg.Image(key="GREOLogo")], # PNG
+    [sg.Text(' ')], 
+    [sg.Text(' ')], 
+    [sg.Text(' ')], 
     [sg.Text('Eficiência de deslocamento estimada [%]', text_color='DarkBlue')], 
     [sg.Text('                                                                                                                                 ', text_color='red', key='output')], 
 ]
@@ -82,7 +84,7 @@ window = sg.Window(
     font="Helvetica 16",
 )
 
-window["GREOLogo"].update(filename=GREOlogofile,size=(200,200))
+window["GREOLogo"].update(filename=GREOlogofile,size=(341,181))
 
 while True:
     event, values = window.read()
