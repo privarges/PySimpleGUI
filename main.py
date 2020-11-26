@@ -138,7 +138,10 @@ while True:
                                                                                     rho_1_ing, n1, tau_y1_ing, k1_ing, \
                                                                                     rho_2_ing, n2, tau_y2_ing, k2_ing)
 
-        Ef = round(efic.Calc_Eficiencia(e, D_star, L_star, d_rev_star, rho_star, eta_star, Re), 2)
+        Ef = efic.Calc_Eficiencia(e, D_star, L_star, d_rev_star, rho_star, eta_star, Re)
+
+        if type(Ef) == float:
+            Ef = round(Ef,2)
 
         fileoutput[keyList[14]] = Ef
 
