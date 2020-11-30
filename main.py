@@ -44,7 +44,7 @@ inputs_column = [
     [sg.Text('Índice de comportamento [ ]'), sg.Input(size=(12,1), enable_events=True, key='Input_n1')], 
     [sg.Text('Fluido deslocador:', text_color='DarkGrey', font='Any 18')], 
     [sg.Text('Densidade [lb/gal]'), sg.Input(size=(12,1), enable_events=True, key='Input_rho_2_ing')], 
-    [sg.Text('Tensão limite de escoamento [lbf/100ft\u00B2]'), sg.Input(size=(12,1), enable_events=True, key='Input_tau_y2_ing')], 
+    [sg.Text('Tensão limite de escoamento (LE) [lbf/100ft\u00B2]'), sg.Input(size=(12,1), enable_events=True, key='Input_tau_y2_ing')], 
     [sg.Text('Índice de consistência [lbf.s\u207f/100ft\u00B2]'), sg.Input(size=(12,1), enable_events=True, key='Input_k2_ing')], 
     [sg.Text('Índice de comportamento [ ]'), sg.Input(size=(12,1), enable_events=True,  key='Input_n2')], 
     [sg.Text(' ')], 
@@ -147,7 +147,7 @@ while True:
 
         fileoutput[keyList[14]] = Ef
 
-        with open('Dados.csv', 'w') as fd:  # filename+
+        with open('Dados_entrada_saida.csv', 'w') as fd:  # filename+
             for key in fileoutput.keys():
                 fd.write("%s ; %s\n"%(key,fileoutput[key]))
         window['output'].update(Ef)  
