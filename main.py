@@ -49,7 +49,7 @@ inputs_column = [
 
 # Coluna da direita
 result_column = [
-    [sg.Image(key="GREOLogo")], # PNG
+    [sg.Image(filename='', key="GREOLogo", enable_events=True)], # PNG
     [sg.Text(' ')], 
     [sg.Text(' ')], 
     [sg.Text(' ')], 
@@ -74,7 +74,7 @@ window = sg.Window(
     auto_size_text=True,
     auto_size_buttons=True,
     location=(0, 0),
-    size=(900, 610), # reduz o tamanho da janela 
+    #size=(900, 610), # reduz o tamanho da janela 
     finalize=True,
     element_justification='c',
     font="Helvetica 16",
