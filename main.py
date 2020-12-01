@@ -21,23 +21,26 @@ sg.theme('LightBlue') #LightBlue -> combinação de cores do tema da janela
 
 ######    layout da janela    ############################
 
+size_title_1 ='Any 14'
+size_title_2 ='Any 12'
+
 # Coluna da esquerda
 inputs_column = [
-    [sg.Text('Cálculo da eficiência de deslocamento em zonas erodidas', text_color='DarkBlue', font='Any 20',justification='center')], 
-    [sg.Text('Parâmetros geométricos:', justification='center', text_color='DarkGrey', font='Any 18')], 
+    [sg.Text('Cálculo da eficiência de deslocamento em zonas erodidas', text_color='DarkBlue', font=size_title_1,justification='center')], 
+    [sg.Text('Parâmetros geométricos:', justification='center', text_color='DarkGrey', font=size_title_2)], 
     [sg.Text('Diâmetro do arrombamento [m]'), sg.Input(size=(12,1), enable_events=True, key='Input_D')], 
     [sg.Text('Comprimento do arrombamento [m]'), sg.Input(size=(12,1), enable_events=True, key='Input_L')], 
     [sg.Text('Diâmetro do poço [pol]'), sg.Input(size=(12,1), enable_events=True, key='Input_d_poco_ing')], 
     [sg.Text('Diâmetro do revestimento [pol]'), sg.Input(size=(12,1), enable_events=True, key='Input_d_rev_ing')], 
     [sg.Text('Excentricidade'), sg.Input(size=(12,1), enable_events=True, key='Input_e')],
-    [sg.Text('Parâmetro dinâmico:', justification='center', text_color='DarkGrey', font='Any 18')], 
+    [sg.Text('Parâmetro dinâmico:', justification='center', text_color='DarkGrey', font=size_title_2)], 
     [sg.Text('Vazão [bpm]'), sg.Input(size=(12,1), enable_events=True, key='Input_Q_ing')], 
-    [sg.Text('Fluido deslocado:', text_color='DarkGrey', font='Any 18')],
+    [sg.Text('Fluido deslocado:', text_color='DarkGrey', font=size_title_2)],
     [sg.Text('Densidade [lb/gal]'), sg.Input(size=(12,1), enable_events=True, key='Input_rho_1_ing')], 
     [sg.Text('Tensão limite de escoamento [lbf/100ft\u00B2]'), sg.Input(size=(12,1), enable_events=True, key='Input_tau_y1_ing')], 
     [sg.Text('Índice de consistência [lbf.s\u207f/100ft\u00B2]'), sg.Input(size=(12,1), enable_events=True, key='Input_k1_ing')], 
     [sg.Text('Índice de comportamento [ ]'), sg.Input(size=(12,1), enable_events=True, key='Input_n1')], 
-    [sg.Text('Fluido deslocador:', text_color='DarkGrey', font='Any 18')], 
+    [sg.Text('Fluido deslocador:', text_color='DarkGrey', font=size_title_2)], 
     [sg.Text('Densidade [lb/gal]'), sg.Input(size=(12,1), enable_events=True, key='Input_rho_2_ing')], 
     [sg.Text('Tensão limite de escoamento (LE) [lbf/100ft\u00B2]'), sg.Input(size=(12,1), enable_events=True, key='Input_tau_y2_ing')], 
     [sg.Text('Índice de consistência [lbf.s\u207f/100ft\u00B2]'), sg.Input(size=(12,1), enable_events=True, key='Input_k2_ing')], 
@@ -54,7 +57,7 @@ result_column = [
     [sg.Text(' ')], 
     [sg.Text(' ')], 
     [sg.Text('Eficiência de deslocamento estimada [%]', text_color='DarkBlue')], 
-    [sg.Text('                                                                                                                                 ', text_color='red', key='output')], 
+    [sg.Multiline('                                                                                                                                 ', text_color='red', key='output',justification='c')], 
 ]
 
 # Junção das colunas que determinam o layout
@@ -77,7 +80,7 @@ window = sg.Window(
     size=(900, 610), # reduz o tamanho da janela 
     finalize=True,
     element_justification='c',
-    font="Helvetica 16",
+    font="Helvetica 12",
 )
 
 window["GREOLogo"].update(filename=GREOlogofile,size=(341,181))
@@ -138,9 +141,12 @@ while True:
         # Calculo da eficiencia de deslocamento
         Ef = efic.Calc_Eficiencia(e, D_star, L_star, d_rev_star, rho_star, eta_star, Re)
 
-        # Ajuste para arredondar eficiencia para 2 casas decimais
         if type(Ef) == float:
-            Ef = round(Ef,2)
+            # Arredonda eficiencia para 2 casas decimais
+            Ef = round(Ef,2) 
+            window['output'].update(Ef, text_color='green')
+        else:
+            window['output'].update(Ef, text_color='red')
 
         # Associacao da eficiencia calculado ao valor da lista que sera exibido no arquivo de saida
         fileoutput[keyList[14]] = Ef
@@ -149,7 +155,6 @@ while True:
         with open('Dados_entrada_saida.csv', 'w') as fd:  # filename+
             for key in fileoutput.keys():
                 fd.write("%s ; %s\n"%(key,fileoutput[key])) # coluna 1 = nome e coluna 2 = valor da variavel
-        window['output'].update(Ef)  
 
         
 window.close()
