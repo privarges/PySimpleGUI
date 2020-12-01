@@ -57,7 +57,7 @@ result_column = [
     [sg.Text(' ')], 
     [sg.Text(' ')], 
     [sg.Text('Eficiência de deslocamento estimada [%]', text_color='DarkBlue')], 
-    [sg.Text('                                                                                                                                 ', text_color='red', key='output')], 
+    [sg.Multiline('                                                                                                                                 ', text_color='red', key='output',justification='c')], 
 ]
 
 # Junção das colunas que determinam o layout
@@ -141,9 +141,12 @@ while True:
         # Calculo da eficiencia de deslocamento
         Ef = efic.Calc_Eficiencia(e, D_star, L_star, d_rev_star, rho_star, eta_star, Re)
 
-        # Ajuste para arredondar eficiencia para 2 casas decimais
         if type(Ef) == float:
-            Ef = round(Ef,2)
+            # Arredonda eficiencia para 2 casas decimais
+            Ef = round(Ef,2) 
+            window['output'].update(Ef, text_color='green')
+        else:
+            window['output'].update(Ef, text_color='red')
 
         # Associacao da eficiencia calculado ao valor da lista que sera exibido no arquivo de saida
         fileoutput[keyList[14]] = Ef
@@ -152,7 +155,6 @@ while True:
         with open('Dados_entrada_saida.csv', 'w') as fd:  # filename+
             for key in fileoutput.keys():
                 fd.write("%s ; %s\n"%(key,fileoutput[key])) # coluna 1 = nome e coluna 2 = valor da variavel
-        window['output'].update(Ef)  
 
         
 window.close()

@@ -41,6 +41,9 @@ def Calc_Eficiencia(e, D_star, L_star, d_rev_star, rho_star, eta_star, Re):
                 Ef = D_star**Fit1.a2 * Re**Fit1.b2 * L_star + D_star**Fit1.c2 * Re**Fit1.d2
             else:
                 Ef = D_star**Fit1.a3 * Re**Fit1.b3 * L_star + D_star**Fit1.c3 * Re**Fit1.d3
+        else:
+            # mensagem exibida caso os valores de entrada nao estejam nos limites das corrlacoes
+            Ef = 'Erro! Parâmetros fora do escopo de análise desta versão do programa.' 
     else:
         # mensagem exibida caso os valores de entrada nao estejam nos limites das corrlacoes
         Ef = 'Erro! Parâmetros fora do escopo de análise desta versão do programa.' 
