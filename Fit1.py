@@ -6,6 +6,8 @@ import math # Mathematical Functions
 
 # Calculo da eficiencia de deslocamento
 
+# Os parametros abaixo representam os curve fittings para cada conjunto de dados
+
 # Curva A: 
 # rho_star = -0.03 , D_star = 1.47, 1.02 < eta_star < 7.42, 4.05 < Re < 102.57
 

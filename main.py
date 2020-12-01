@@ -17,11 +17,6 @@ GREOlogofile = os.path.join(
             './images/logo.png'
         )
 
-# fig = matplotlib.figure.Figure(figsize=(3, 4))
-# t = np.arange(0, 3, .01)
-# fig.add_subplot(111).plot(t, 2 * np.sin(2 * np.pi * t))
-# matplotlib.use("TkAgg")
-
 sg.theme('LightBlue') #LightBlue -> combinação de cores do tema da janela
 
 ######    layout da janela    ############################
@@ -94,6 +89,7 @@ while True:
     elif event == 'Calculate':
 
         fileoutput = {}
+        # Lista com parametros que serao salvos no arquivo de saida
         keyList = ["Diametro do arrombamento [m]", "Comprimento do arrombamento [m]", "Diametro do poco [pol]","Diametro do revestimento [pol]",\
                     "Excentricidade","Vazao [bpm]","Densidade_1 [lb/gal]",\
                     "Tensao limite de escoamento_1 [lbf/100ft^2]","Indice de consistencia_1 [lbf.s^n/100ft^2]","Indice de potencia_1 [ ]",\
@@ -104,8 +100,7 @@ while True:
         for i in keyList: 
             fileoutput[i] = None
 
-        # k=-1
-        # k+=1
+        # Associacao das variaveis aos valores de entrada
         D = float(values['Input_D'])
         fileoutput[keyList[0]] = D
         L = float(values['Input_L'])
@@ -135,21 +130,24 @@ while True:
         n2 = float(values['Input_n2'])
         fileoutput[keyList[13]] = n2
 
-        # Cálculo dos adimensionais
+        # Calculo dos adimensionais
         D_star, L_star, d_rev_star, rho_star, eta_star, Re = arr.CalcAdimensionais(D, L, d_poco_ing , d_rev_ing, Q_ing, \
                                                                                     rho_1_ing, n1, tau_y1_ing, k1_ing, \
                                                                                     rho_2_ing, n2, tau_y2_ing, k2_ing)
-
+        # Calculo da eficiencia de deslocamento
         Ef = efic.Calc_Eficiencia(e, D_star, L_star, d_rev_star, rho_star, eta_star, Re)
 
+        # Ajuste para arredondar eficiencia para 2 casas decimais
         if type(Ef) == float:
             Ef = round(Ef,2)
 
+        # Associacao da eficiencia calculado ao valor da lista que sera exibido no arquivo de saida
         fileoutput[keyList[14]] = Ef
 
+        # Arquivo de saida
         with open('Dados_entrada_saida.csv', 'w') as fd:  # filename+
             for key in fileoutput.keys():
-                fd.write("%s ; %s\n"%(key,fileoutput[key]))
+                fd.write("%s ; %s\n"%(key,fileoutput[key])) # coluna 1 = nome e coluna 2 = valor da variavel
         window['output'].update(Ef)  
 
         

@@ -4,23 +4,7 @@ import matplotlib.pyplot as plt # Plot graphics
 import math # Mathematical Functions
 import Funcoes as fc
 
-# Variaveis para teste do Arrombamento.py
-# D = 0.457
-# L = 4
-# d_poco_ing = 12.25
-# d_rev_ing = 9.625
-# e = 0
-# Q_ing = 12 
-# rho_1_ing = 16.5
-# tau_y1_ing = 19.3
-# k1_ing = 16
-# n1 = 0.3
-# rho_2_ing = 16
-# tau_y2_ing = 0
-# k2_ing = 14.08*2
-# n2 = 0.48
-
-# Definição do Cálculo do Arrombamento
+# Calculo dos parametros adimensionais que sao as entradas do calculo da eficiencia
 def CalcAdimensionais(D, L, d_poco_ing , d_rev_ing, Q_ing, \
                         rho_1_ing, n1, tau_y1_ing, k1_ing, \
                         rho_2_ing, n2, tau_y2_ing, k2_ing):

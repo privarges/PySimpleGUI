@@ -20,17 +20,19 @@ import Fit1 as Fit1
 # n1 = 0.3
 # rho_2_ing = 16
 # tau_y2_ing = 0
-# k2_ing = 14.08*2
+# k2_ing = 28.16
 # n2 = 0.48
 
 # Definição do calculo da eficiencia de deslocamento
 def Calc_Eficiencia(e, D_star, L_star, d_rev_star, rho_star, eta_star, Re):
 
-    if  (e == 0 and np.round(d_rev_star,3) == 0.786 and \
+    # Parametros avaliados nas correlacoes  
+    # As correlacoers sao validas para casos concentricos com um valor fixo de d_rev_star e rho_star \
+    # e uma faixa de eta_star e Reynolds
+    if  (e == 0 and np.round(d_rev_star,3) == 0.786 and \ 
         np.round(rho_star,2) == -0.03 and \
         (eta_star < 7.42 and eta_star > 1.02) and \
         (Re < 102.57 and Re > 4.05)):  
-
 
         if (D_star > 1.45 and D_star < 1.47):  # D_star == 1.46       
             Ef = D_star**Fit1.a1 * Re**Fit1.b1 * L_star + D_star**Fit1.c1 * Re**Fit1.d1 * eta_star**Fit1.e1
@@ -40,8 +42,9 @@ def Calc_Eficiencia(e, D_star, L_star, d_rev_star, rho_star, eta_star, Re):
             else:
                 Ef = D_star**Fit1.a3 * Re**Fit1.b3 * L_star + D_star**Fit1.c3 * Re**Fit1.d3
     else:
-        Ef = 'Erro! Parâmetros fora do escopo de análise desta versão do programa.'
-
+        # mensagem exibida caso os valores de entrada nao estejam nos limites das corrlacoes
+        Ef = 'Erro! Parâmetros fora do escopo de análise desta versão do programa.' 
+        
     return Ef
 
 
