@@ -29,7 +29,7 @@ def Calc_Eficiencia(e, D_star, L_star, d_rev_star, rho_star, eta_star, Re):
     # Parametros avaliados nas correlacoes  
     # As correlacoers sao validas para casos concentricos com um valor fixo de d_rev_star e rho_star \
     # e uma faixa de eta_star e Reynolds
-    if  (e == 0 and np.round(d_rev_star,3) == 0.786 and \ 
+    if  (e == 0 and np.round(d_rev_star,3) == 0.786 and \
         np.round(rho_star,2) == -0.03 and \
         (eta_star < 7.42 and eta_star > 1.02) and \
         (Re < 102.57 and Re > 4.05)):  

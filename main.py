@@ -70,10 +70,11 @@ layout =[
 window = sg.Window(
     "Versão Alfa",
     layout,
+    default_button_element_size=(12,1),
     auto_size_text=True,
     auto_size_buttons=True,
-    default_button_element_size=(12,1),
     location=(0, 0),
+    size=(900, 610), # reduz o tamanho da janela 
     finalize=True,
     element_justification='c',
     font="Helvetica 16",
