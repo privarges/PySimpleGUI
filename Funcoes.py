@@ -29,7 +29,11 @@ def Calc_d_poco(d_poco_ing):
 
 def Calc_d_rev(d_rev_ing):
     d_rev = d_rev_ing * conv_pol # diametro do revestimento
-    return d_rev
+    return d_rev  
+
+def Calc_D_cav(D_cav_ing):
+    D_cav = D_cav_ing * conv_pol # diametro da cavidade
+    return D_cav      
 
 def Calc_Q(Q_ing):    
     Q = Q_ing/conv_q # vazao 
@@ -80,13 +84,14 @@ def Calc_gama_dot_c(u_bar, Dh):
     return gama_dot_c
 
 def Calc_mu_2(tau_y2, gama_dot_c, k2, n2):
-    mu_2 = tau_y2 / gama_dot_c + k2 * gama_dot_c ** (n2 - 1) # viscosidade newtoniana aparente do fluido deslocador
+    mu_2 = tau_y2 / gama_dot_c + k2 * gama_dot_c ** (n2 - 1) # viscosidade newtoniana aparente do fluido deslocador ou viscosidade caracteristica do fluido do viscoplastico   
     # mu_2 = 12.16
     return mu_2
 
 def Calc_eta_c_1(tau_y1, gama_dot_c, k1, n1):
     eta_c_1 = tau_y1 / gama_dot_c + k1 * gama_dot_c ** (n1 - 1) # viscosidade caracteristica do fluido deslocado viscoplastico    
     return eta_c_1
+    
 
 # def ErrorHandeling(error)
 #     try:
