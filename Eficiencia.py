@@ -8,7 +8,7 @@ import Fit1 as Fit1
 
 
 # Dados para teste
-# D = 0.457
+# D = 18
 # L = 4
 # d_poco_ing = 12.25
 # d_rev_ing = 9.625
@@ -26,13 +26,12 @@ import Fit1 as Fit1
 # Definição do calculo da eficiencia de deslocamento
 def Calc_Eficiencia(e, D_star, L_star, d_rev_star, rho_star, eta_star, Re):
 
-    # Parametros avaliados nas correlacoes  
-    # As correlacoers sao validas para casos concentricos com um valor fixo de d_rev_star e rho_star \
-    # e uma faixa de eta_star e Reynolds
+    # Dados da etapa 1 (curvas com 2 pontos)
     if  (e == 0 and np.round(d_rev_star,3) == 0.786 and \
         np.round(rho_star,2) == -0.03 and \
         (eta_star < 7.42 and eta_star > 1.02) and \
-        (Re < 102.57 and Re > 4.05)):  
+        (Re < 102.57 and Re > 4.05)) and \
+        np.round(L_star,2) > 6.41 and np.round(L_star,2) < 19.29:  
 
         if (D_star > 1.45 and D_star < 1.47):  # D_star == 1.46       
             Ef = D_star**Fit1.a1 * Re**Fit1.b1 * L_star + D_star**Fit1.c1 * Re**Fit1.d1 * eta_star**Fit1.e1
@@ -44,6 +43,26 @@ def Calc_Eficiencia(e, D_star, L_star, d_rev_star, rho_star, eta_star, Re):
         else:
             # mensagem exibida caso os valores de entrada nao estejam nos limites das corrlacoes
             Ef = 'Erro! Parâmetros fora do escopo de análise desta versão do programa.' 
+    
+    # Dados da etapa 2 (curvas com 3 pontos) - slide 14
+    elif (e == 0 and np.round(d_rev_star,3) == 0.846 and \
+        np.round(rho_star,2) == -0.01 and \
+        (eta_star > 0.0038 and eta_star < 11.64) and \
+        (Re > 7.25 and Re <1876)):
+        
+        if (D_star > 1.07 and D_star < 1.09): # D_star == 1.08 
+            if  Re < 82.68:
+                if  (L_star < 22.72):  
+                    Ef = 
+                else: 
+                    Ef = # = Ef(max(L_star)) - valor assintótico
+            elif Re > 82.69:
+                if  (L_star < 22.72):   
+                    Ef = 
+                else: 
+                    Ef = # = Ef(max(L_star)) - valor assintótico
+    
+    
     else:
         # mensagem exibida caso os valores de entrada nao estejam nos limites das corrlacoes
         Ef = 'Erro! Parâmetros fora do escopo de análise desta versão do programa.' 
