@@ -7,7 +7,7 @@ import Arrombamento as arr
 import Fit1 as Fit1
 
 
-# Dados para teste
+# Dados para teste - curva A a C
 # D = 18
 # L = 4
 # d_poco_ing = 12.25
@@ -26,12 +26,12 @@ import Fit1 as Fit1
 # Definição do calculo da eficiencia de deslocamento
 def Calc_Eficiencia(e, D_star, L_star, d_rev_star, rho_star, eta_star, Re):
 
-    # Dados da etapa 1 (curvas com 2 pontos)
-    if  (e == 0 and np.round(d_rev_star,3) == 0.786 and \
+    # Curvas A a C (curvas com 2 pontos)
+    if  e == 0 and np.round(d_rev_star,3) == 0.786 and \
         np.round(rho_star,2) == -0.03 and \
         (eta_star < 7.42 and eta_star > 1.02) and \
-        (Re < 102.57 and Re > 4.05)) and \
-        np.round(L_star,2) > 6.41 and np.round(L_star,2) < 19.29:  
+        (Re < 102.57 and Re > 4.05) and \
+        (np.round(L_star,2) > 6.41 and np.round(L_star,2) < 19.29):  
 
         if (D_star > 1.45 and D_star < 1.47):  # D_star == 1.46       
             Ef = D_star**Fit1.a1 * Re**Fit1.b1 * L_star + D_star**Fit1.c1 * Re**Fit1.d1 * eta_star**Fit1.e1
@@ -41,26 +41,31 @@ def Calc_Eficiencia(e, D_star, L_star, d_rev_star, rho_star, eta_star, Re):
             else:
                 Ef = D_star**Fit1.a3 * Re**Fit1.b3 * L_star + D_star**Fit1.c3 * Re**Fit1.d3
         else:
-            # mensagem exibida caso os valores de entrada nao estejam nos limites das corrlacoes
+            # mensagem exibida caso os valores de entrada nao estejam nos limites das correlacoes
             Ef = 'Erro! Parâmetros fora do escopo de análise desta versão do programa.' 
     
-    # Dados da etapa 2 (curvas com 3 pontos) - slide 14
-    elif (e == 0 and np.round(d_rev_star,3) == 0.846 and \
+    # Curva D a E - slide 14
+    elif e == 0 and np.round(d_rev_star,3) == 0.846 and \
         np.round(rho_star,2) == -0.01 and \
-        (eta_star > 0.0038 and eta_star < 11.64) and \
-        (Re > 7.25 and Re <1876)):
+        eta_star > 0.0038:   # and eta_star < 11.64):
         
         if (D_star > 1.07 and D_star < 1.09): # D_star == 1.08 
-            if  Re < 82.68:
-                if  (L_star < 22.72):  
-                    Ef = 
+            if  (Re > 7.25 and Re <= 82.68 and eta_star > 1):
+                if  (L_star >3.027 and L_star <= 22.72): #Curva D  
+                    Ef = D_star**Fit1.a4 * Re**Fit1.b4 * L_star**(D_star**Fit1.c4 * eta_star**Fit1.d4)
+                elif L_star > 22.72:  #Curva D1
+                    Ef = D_star**Fit1.a4 * Re**Fit1.b4 * 22.72**(D_star**Fit1.c4 * eta_star**Fit1.d4)# = Ef(max(L_star)) - valor cte
+                else:
+                    # mensagem exibida caso os valores de entrada nao estejam nos limites das corrlacoes
+                    Ef = 'Erro! Parâmetros fora do escopo de análise desta versão do programa.' 
+            elif (Re > 82.69 and Re <= 1875.8): # qq eta_star
+                if  (L_star > 3.027 and L_star <= 22.72):   #Curva E
+                    Ef = D_star**Fit1.a5 * Re**Fit1.b5 * ((D_star**Fit1.c5 * Re**Fit1.d5)**(1/L_star)) * L_star**(math.log(D_star**Fit1.e5 * eta_star**Fit1.f5))
+                elif L_star > 22.72:  #Curva E1
+                    Ef = D_star**Fit1.a5 * Re**Fit1.b5 * ((D_star**Fit1.c5 * Re**Fit1.d5)**(1/22.72)) * 22.72**(math.log(D_star**Fit1.e5 * eta_star**Fit1.f5)) # = Ef(max(L_star)) - valor assintótico
                 else: 
-                    Ef = # = Ef(max(L_star)) - valor assintótico
-            elif Re > 82.69:
-                if  (L_star < 22.72):   
-                    Ef = 
-                else: 
-                    Ef = # = Ef(max(L_star)) - valor assintótico
+                    # mensagem exibida caso os valores de entrada nao estejam nos limites das correlacoes
+                    Ef = 'Erro! Parâmetros fora do escopo de análise desta versão do programa.' 
     
     
     else:
