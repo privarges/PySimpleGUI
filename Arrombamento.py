@@ -5,12 +5,13 @@ import math # Mathematical Functions
 import Funcoes as fc
 
 # Calculo dos parametros adimensionais que sao as entradas do calculo da eficiencia
-def CalcAdimensionais(D, L, d_poco_ing , d_rev_ing, Q_ing, \
+def CalcAdimensionais(D_cav_ing, L, d_poco_ing , d_rev_ing, Q_ing, \
                         rho_1_ing, n1, tau_y1_ing, k1_ing, \
                         rho_2_ing, n2, tau_y2_ing, k2_ing):
     
     d_poco = fc.Calc_d_poco(d_poco_ing)
     d_rev = fc.Calc_d_rev(d_rev_ing)
+    D_cav = fc.Calc_D_cav(D_cav_ing)
 
     Q = fc.Calc_Q(Q_ing)
 
@@ -32,7 +33,7 @@ def CalcAdimensionais(D, L, d_poco_ing , d_rev_ing, Q_ing, \
 
     # Calculo dos parametros adimensionais
 
-    D_star = D / d_poco
+    D_star = D_cav / d_poco
 
     L_star = L / d_poco
 

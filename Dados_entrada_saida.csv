@@ -1,7 +1,8 @@
-Diametro do arrombamento [m] ; 4.0
+
+Diametro do arrombamento [m] ; 0.457
 Comprimento do arrombamento [m] ; 4.0
 Diametro do poco [pol] ; 12.25
-Diametro do revestimento [pol] ; 9.625
+Diametro do revestimento [pol] ;9.625
 Excentricidade ; 0.0
 Vazao [bpm] ; 12.0
 Densidade_1 [lb/gal] ; 16.5
@@ -12,4 +13,4 @@ Densidade_2 [lb/gal] ; 16.0
 Tensao limite de escoamento_2 [lbf/100ft^2] ; 0.0
 Indice de consistencia_2 [lbf.s^n/100ft^2] ; 28.16
 Indice de potencia_2 [ ] ; 0.48
-Eficiencia [%] ; Erro! Parâmetros fora do escopo de análise desta versão do programa.
+Eficiencia [%] ; 82.07
