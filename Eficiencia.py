@@ -44,28 +44,54 @@ def Calc_Eficiencia(e, D_star, L_star, d_rev_star, rho_star, eta_star, Re):
             # mensagem exibida caso os valores de entrada nao estejam nos limites das correlacoes
             Ef = 'Erro! Parâmetros fora do escopo de análise desta versão do programa.' 
     
-    # Curva D a E - slide 14
+    
     elif e == 0 and np.round(d_rev_star,3) == 0.846 and \
         np.round(rho_star,2) == -0.01 and \
-        eta_star > 0.0038:   # and eta_star < 11.64):
+        (eta_star > 0.0038 and eta_star < 11.64):
         
-        if (D_star > 1.07 and D_star < 1.09): # D_star == 1.08 
+        # Curva D a E - slide 14
+        if (D_star > 1.075 and D_star < 1.08): # D_star == 1.077
             if  (Re > 7.25 and Re <= 82.68 and eta_star > 1):
-                if  (L_star >3.027 and L_star <= 22.72): #Curva D  
+                if  (L_star >= 3.027 and L_star <= 22.72): #Curva D  
                     Ef = D_star**Fit1.a4 * Re**Fit1.b4 * L_star**(D_star**Fit1.c4 * eta_star**Fit1.d4)
                 elif L_star > 22.72:  #Curva D1
                     Ef = D_star**Fit1.a4 * Re**Fit1.b4 * 22.72**(D_star**Fit1.c4 * eta_star**Fit1.d4)# = Ef(max(L_star)) - valor cte
                 else:
-                    # mensagem exibida caso os valores de entrada nao estejam nos limites das corrlacoes
+                    # mensagem exibida caso os valores de entrada nao estejam nos limites das correlacoes
                     Ef = 'Erro! Parâmetros fora do escopo de análise desta versão do programa.' 
             elif (Re > 82.69 and Re <= 1875.8): # qq eta_star
-                if  (L_star > 3.027 and L_star <= 22.72):   #Curva E
+                if  (L_star >= 3.027 and L_star <= 22.72):   #Curva E
                     Ef = D_star**Fit1.a5 * Re**Fit1.b5 * ((D_star**Fit1.c5 * Re**Fit1.d5)**(1/L_star)) * L_star**(math.log(D_star**Fit1.e5 * eta_star**Fit1.f5))
                 elif L_star > 22.72:  #Curva E1
                     Ef = D_star**Fit1.a5 * Re**Fit1.b5 * ((D_star**Fit1.c5 * Re**Fit1.d5)**(1/22.72)) * 22.72**(math.log(D_star**Fit1.e5 * eta_star**Fit1.f5)) # = Ef(max(L_star)) - valor assintótico
                 else: 
                     # mensagem exibida caso os valores de entrada nao estejam nos limites das correlacoes
                     Ef = 'Erro! Parâmetros fora do escopo de análise desta versão do programa.' 
+            else: 
+                # mensagem exibida caso os valores de entrada nao estejam nos limites das correlacoes
+                Ef = 'Erro! Parâmetros fora do escopo de análise desta versão do programa.' 
+
+        # Curva F a G - slide 18 e 19
+        if (D_star > 1.53 and D_star < 1.54): # D_star == 1.538 
+            if  (Re >= 7.25 and Re <= 82.68 and eta_star > 1):
+                if  (L_star >= 3.027 and L_star <= 22.72): #Curva D  
+                    Ef = D_star**Fit1.a6 * Re**Fit1.b6 * L_star**(D_star**Fit1.c6 * eta_star**Fit1.d6)
+                elif L_star > 22.72:  #Curva D1
+                    Ef = D_star**Fit1.a6 * Re**Fit1.b6 * 22.72**(D_star**Fit1.c6 * eta_star**Fit1.d6)# = Ef(max(L_star)) - valor cte
+                else:
+                    # mensagem exibida caso os valores de entrada nao estejam nos limites das corrlacoes
+                    Ef = 'Erro! Parâmetros fora do escopo de análise desta versão do programa.' 
+            elif (Re > 82.69 and Re <= 1875.8): # qq eta_star
+                if  (L_star >= 3.027 and L_star <= 22.72):   #Curva E
+                    Ef = D_star**Fit1.a7 * Re**Fit1.b7 * L_star**(D_star**Fit1.c7 * eta_star**Fit1.d7)
+                elif L_star > 22.72:  #Curva E1
+                    Ef = D_star**Fit1.a7 * Re**Fit1.b7 * 22.72**(D_star**Fit1.c7 * eta_star**Fit1.d7) # = Ef(max(L_star)) - valor assintótico
+                else: 
+                    # mensagem exibida caso os valores de entrada nao estejam nos limites das correlacoes
+                    Ef = 'Erro! Parâmetros fora do escopo de análise desta versão do programa.'     
+            else: 
+                # mensagem exibida caso os valores de entrada nao estejam nos limites das correlacoes
+                Ef = 'Erro! Parâmetros fora do escopo de análise desta versão do programa.'         
     
     
     else:
