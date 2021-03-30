@@ -15,7 +15,7 @@ import csv
 
 # Pasta com Logo do GReo
 GREOlogofile = os.path.join(
-            './images/logo.png'
+            './images/imagem1.png'
         )
 
 sg.theme('LightBlue') #LightBlue -> combinação de cores do tema da janela
@@ -53,12 +53,12 @@ inputs_column = [
 
 # Coluna da direita
 result_column = [
+    [sg.Text(' ')],
+    [sg.Text(' ')],
     [sg.Image(filename='', key="GREOLogo", enable_events=True)], # PNG
     [sg.Text(' ')], 
-    [sg.Text(' ')], 
-    [sg.Text(' ')], 
     [sg.Text('Eficiência de deslocamento estimada [%]', text_color='DarkBlue')], 
-    [sg.Multiline('                                                                                                                                 ', text_color='red', key='output',justification='c')], 
+    [sg.Multiline('                                                                                                                     ', text_color='red', key='output',justification='c')], 
 ]
 
 # Junção das colunas que determinam o layout
@@ -84,7 +84,8 @@ window = sg.Window(
     font="Helvetica 12",
 )
 
-window["GREOLogo"].update(filename=GREOlogofile,size=(341,181))
+window["GREOLogo"].update(filename=GREOlogofile,size=(252,397))
+# logo 341,181
 
 while True:
     event, values = window.read()
