@@ -58,7 +58,7 @@ result_column = [
     [sg.Image(filename='', key="GREOLogo", enable_events=True)], # PNG
     [sg.Text(' ')], 
     [sg.Text('Eficiência de deslocamento estimada [%]', text_color='DarkBlue')], 
-    [sg.Multiline('                                                                                                                     ', text_color='red', key='output',justification='c')], 
+    [sg.Multiline('                                                                                                 ', text_color='red', key='output',justification='c')], 
 ]
 
 # Junção das colunas que determinam o layout
@@ -72,7 +72,7 @@ layout =[
 # Criacao da janela 
 
 window = sg.Window(
-    "Versão Alfa",
+    "Versão Beta",
     layout,
     default_button_element_size=(12,1),
     auto_size_text=True,
