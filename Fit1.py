@@ -116,3 +116,4 @@ f9 = -0.011835536391985381710561241633589
 # d_rev_star = 0.846, rho_star = -0.01 , D_star = 2.500, 0.0038 < eta_star < 3.83, 82.68 < Re < 1875.84, L_star > 22.72
 # = Ef(max(L_star)=22.72)
 
+# Correlacoes não newtonianas
