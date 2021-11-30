@@ -72,7 +72,7 @@ layout =[
 # Criacao da janela 
 
 window = sg.Window(
-    "Versão Beta",
+    "Versão Beta 2.0",
     layout,
     default_button_element_size=(12,1),
     auto_size_text=True,
