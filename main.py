@@ -72,7 +72,7 @@ layout =[
 # Criacao da janela 
 
 window = sg.Window(
-    "Versão Beta",
+    "Versão 1.0",
     layout,
     default_button_element_size=(12,1),
     auto_size_text=True,
@@ -106,42 +106,54 @@ while True:
         for i in keyList: 
             fileoutput[i] = None
 
+        index = 0
         # Associacao das variaveis aos valores de entrada
-        D_cav_ing = float(values['Input_D'])
-        fileoutput[keyList[0]] = D_cav_ing
-        L = float(values['Input_L'])
-        fileoutput[keyList[1]] = L
-        d_poco_ing = float(values['Input_d_poco_ing'])
-        fileoutput[keyList[2]] = d_poco_ing
-        d_rev_ing = float(values['Input_d_rev_ing'])
-        fileoutput[keyList[3]] = d_rev_ing
-        e = float(values['Input_e'])
-        fileoutput[keyList[4]] = e
-        Q_ing = float(values['Input_Q_ing'])
-        fileoutput[keyList[5]] = Q_ing
-        rho_1_ing = float(values['Input_rho_1_ing'])
-        fileoutput[keyList[6]] = rho_1_ing
-        tau_y1_ing = float(values['Input_tau_y1_ing'])
-        fileoutput[keyList[7]] = tau_y1_ing
-        k1_ing = float(values['Input_k1_ing'])
-        fileoutput[keyList[8]] = k1_ing
-        n1 = float(values['Input_n1'])
-        fileoutput[keyList[9]] = n1
-        rho_2_ing = float(values['Input_rho_2_ing'])
-        fileoutput[keyList[10]] = rho_2_ing
-        tau_y2_ing = float(values['Input_tau_y2_ing'])
-        fileoutput[keyList[11]] = tau_y2_ing
-        k2_ing = float(values['Input_k2_ing'])
-        fileoutput[keyList[12]] = k2_ing
-        n2 = float(values['Input_n2'])
-        fileoutput[keyList[13]] = n2
+        try:
+            print(float(values['Input_D']))
+            D_cav_ing = float(values['Input_D'])
+            L = float(values['Input_L'])
+            d_poco_ing = float(values['Input_d_poco_ing'])
+            e = float(values['Input_e'])
+            d_rev_ing = float(values['Input_d_rev_ing'])
+            Q_ing = float(values['Input_Q_ing'])
+            rho_1_ing = float(values['Input_rho_1_ing'])
+            tau_y1_ing = float(values['Input_tau_y1_ing'])
+            k1_ing = float(values['Input_k1_ing'])
+            n1 = float(values['Input_n1'])
+            rho_2_ing = float(values['Input_rho_2_ing'])
+            tau_y2_ing = float(values['Input_tau_y2_ing'])
+            k2_ing = float(values['Input_k2_ing'])
+            n2 = float(values['Input_n2'])
 
-        # Calculo dos adimensionais
-        D_star, L_star, d_rev_star, rho_star, eta_star, Re = arr.CalcAdimensionais(D_cav_ing, L, d_poco_ing , d_rev_ing, Q_ing, \
-                                                                                    rho_1_ing, n1, tau_y1_ing, k1_ing, \
-                                                                                    rho_2_ing, n2, tau_y2_ing, k2_ing)
-        # Calculo da eficiencia de deslocamento
-        Ef = efic.Calc_Eficiencia(e, D_star, L_star, d_rev_star, rho_star, eta_star, Re)
+            error = False
+
+        except ValueError:
+            error = True
+            Ef = 'Os dados de entrada devem ser números reais com ponto como separador decimal.'
+        
+
+        if not error:
+            fileoutput[keyList[index]] = D_cav_ing;     index =+ 1
+            fileoutput[keyList[index]] = L;             index =+ 1
+            fileoutput[keyList[index]] = d_poco_ing;    index =+ 1
+            fileoutput[keyList[index]] = d_rev_ing;     index =+ 1
+            fileoutput[keyList[index]] = e;             index =+ 1
+            fileoutput[keyList[index]] = Q_ing;         index =+ 1
+            fileoutput[keyList[index]] = rho_1_ing;     index =+ 1
+            fileoutput[keyList[index]] = tau_y1_ing;    index =+ 1
+            fileoutput[keyList[index]] = k1_ing;        index =+ 1
+            fileoutput[keyList[index]] = n1;            index =+ 1
+            fileoutput[keyList[index]] = rho_2_ing;     index =+ 1
+            fileoutput[keyList[index]] = tau_y2_ing;    index =+ 1
+            fileoutput[keyList[index]] = k2_ing;        index =+ 1
+            fileoutput[keyList[index]] = n2;            index =+ 1
+
+            # Calculo dos adimensionais
+            D_star, L_star, d_rev_star, rho_star, eta_star, Re = arr.CalcAdimensionais(D_cav_ing, L, d_poco_ing , d_rev_ing, Q_ing, \
+                                                                                        rho_1_ing, n1, tau_y1_ing, k1_ing, \
+                                                                                        rho_2_ing, n2, tau_y2_ing, k2_ing)
+            # Calculo da eficiencia de deslocamento
+            Ef = efic.Calc_Eficiencia(e, D_star, L_star, d_rev_star, rho_star, eta_star, Re)
 
         if type(Ef) == float:
             # Arredonda eficiencia para 2 casas decimais
@@ -151,7 +163,7 @@ while True:
             window['output'].update(Ef, text_color='red')
 
         # Associacao da eficiencia calculado ao valor da lista que sera exibido no arquivo de saida
-        fileoutput[keyList[14]] = Ef
+        fileoutput[keyList[index]] = Ef
 
         # Arquivo de saida
         with open('Dados_entrada_saida.csv', 'w') as fd:  # filename+
