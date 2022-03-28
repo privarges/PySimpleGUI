@@ -215,8 +215,74 @@ f_q = 0.20855925760342930976648069651881
 
 # Correlações de fluidos não newtonianos deslocando não newtonianos
 
-# d_rev_star = 0.846, 0.192 < rho_star < 0.394 , 1.08 < D_star < 2.500, 0.23 < eta_star < 25.21, 7.25 < Re < 101.80, L_star > 3.03
+# d_rev_star = 0.846, 0.139 < rho_star < 0.444 , 1.08 < D_star < 2.500, 0.23 < eta_star < 25.21, 7.25 < Re < 101.80, L_star > 3.03
+# Ef > 97%
+
+# d_rev_star = 0.779, 0.139 < rho_star < 0.455 , D_star = 2.29, 1.43 < eta_star < 12.82, 32.83 < Re < 244.84, L_star > 4.50
 # Ef > 97%
 
 # d_rev_star = 0.786, 0.139 < rho_star < 0.464 , D_star = 5.306, 0.33 < eta_star < 12.56, 116.04 < Re < 848.13, L_star > 6.428
 # Ef > 92%
+
+# Curva R: 
+# d_rev_star = 0.882, rho_star = 0.14 , D_star = 7.65, 1.74 < eta_star < 2.68, 199.47 < Re < 1304.31, L_star = 9.26
+# \Phi = -0.02931 Re + 103.2
+
+a_r = -0.02931
+b_r = 103.2
+
+# Curva S: 
+# d_rev_star = 0.882, D_star = 7.65, rho_star = 0.23, 2.03 < eta_star < 2.46, 164.02 < Re < 1363.22, L_star = 9.26
+# \Phi = -0.06408 Re + 108.5
+
+a_s = -0.06408
+b_s = 108.5
+
+# Curva T: 
+# d_rev_star = 0.882, D_star = 7.65, rho_star = 0.33, 3.29 < eta_star < 3.62, 189.59 < Re < 2104.54, L_star = 9.26
+# \Phi = -0.01734 Re + 101.3
+
+a_t = -0.01734
+b_t = 101.3
+
+# Curva U: 
+# d_rev_star = 0.882, D_star = 7.65, rho_star = 0.39, 3.33 < eta_star < 5.65, 296.15 < Re < 1762.14, L_star = 9.26
+# \Phi = -0.02369 Re + 105.8
+
+a_u = -0.02369
+b_u = 105.8
+
+# Curva V: 
+# d_rev_star = 0.882, D_star = 7.65, rho_star = 0.45, 4.98 < eta_star < 7.38, 348.22 < Re < 2372.21, L_star = 9.26
+# \Phi = -0.008468 Re + 101.9
+
+a_v = -0.008468
+b_v = 101.9
+
+# Curva W: 
+# d_rev_star = 0.882, D_star = 7.65, rho_star = 0.41, 0.84 < eta_star < 1.01, 86.48 < Re < 872.95, L_star = 9.26
+# \Phi = -0.03839 Re + 101.4
+
+a_w = -0.03839
+b_w = 101.4
+
+# Curva X: 
+# d_rev_star = 0.882, D_star = 7.65, rho_star = 0.41, 2.77 < eta_star < 2.87, 145.72 < Re < 1421.81, L_star = 9.26
+# \Phi = -0.02045 Re + 101.1
+
+a_x = -0.02045
+b_x = 101.1
+
+# Curva Y: 
+# d_rev_star = 0.882, D_star = 7.65, rho_star = 0.42, 4.10 < eta_star < 4.88, 245.79 < Re < 2083.65, L_star = 9.26
+# \Phi = -0.01065 Re + 101.4
+
+a_y = -0.01065
+b_y = 101.4
+
+# Curva Z: 
+# d_rev_star = 0.882, D_star = 7.65, rho_star = 0.42, 4.88 < eta_star < 10.44, Re < 525.06, L_star = 9.26
+# \Phi = 99%
+
+
+
